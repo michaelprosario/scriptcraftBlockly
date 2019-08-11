@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
 
 app.get('/edit/:script_name', (req, res) => {
     var scriptName = req.params.script_name;
-    scriptName = scriptName.substring(0, scriptName.length - 3);
+    scriptName = scriptName.substring(0, scriptName.length - 4);
     var response = repo.read(scriptName);
     res.render('edit_script', response);
 })

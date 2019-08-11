@@ -4,10 +4,11 @@ class ScriptsRepository {
     constructor() 
     {
         this.dataFolder = this.getDataFolder(); 
+        console.log("data folder: " + this.dataFolder);
     }
 
     getDataFolder(){
-        return './data/';
+        return 'C:/dev/scriptcraft/scriptcraft/plugins/';
     }
 
     stringNullOrEmpty(s){
@@ -51,7 +52,7 @@ class ScriptsRepository {
     }
 
     getAll(){
-        var files = fs.readdirSync(this.dataFolder).filter(file => file.endsWith('.js'));
+        var files = fs.readdirSync(this.dataFolder).filter(file => file.endsWith('.xml'));
         return {
             ok: true,
             files: files
