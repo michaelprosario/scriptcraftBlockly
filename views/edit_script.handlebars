@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>ScriptCraft Mod Builder</title>
+    <script src="/blockly_compressed.js"></script>
+    <script src="/blocks_compressed.js"></script>
+    <script src="/javascript_compressed.js"></script>
+    <script src="/msg/js/en.js"></script>
+    <script src="/blockly4scriptcraft.js"></script>
+</head>
+
+<body>
+    <h1>ScriptCraft Mod Builder</h1>
+    <p>
+        <button onclick="saveCode()">Save</button>
+        <button onclick="closeSketch()">Close</button>
+    </p>
+
+    Mod Name:
+    <input type="text" id="txtModName" value="{{name}}">
+
+    <div id="blocklyDiv" style="height: 500px; width: 700px;"></div>
+    <!-- 
+    <button onclick="showCode()">Show Code</button>
+    -->    
+    <textarea id="txtCode" style="display:none; width:800px; height:300px;"></textarea>
+    <textarea id="txtBlocklyXML" style="display:none;">{{blocklyXml}}</textarea>
+
+    <xml id="toolbox" style="display: none">
+        <category name="Drone">
+            <block type="text"></block>
+
+            <block type="box">
+                <value name="type">
+                    <block type="text">
+                        <field name="TEXT">1</field>
+                    </block>
+                </value>
+
+                <value name="width">
+                    <block type="math_number">
+                        <field name="NUM">1</field>
+                    </block>
+                </value>
+                <value name="height">
+                    <block type="math_number">
+                        <field name="NUM">1</field>
+                    </block>
+                </value>
+                <value name="depth">
+                    <block type="math_number">
+                        <field name="NUM">1</field>
+                    </block>
+                </value>
+            </block>
+            <block type="box0">
+                <value name="type">
+                    <block type="text">
+                        <field name="TEXT">1</field>
+                    </block>
+                </value>
+
+
+                <value name="width">
+                    <block type="math_number">
+                        <field name="NUM">1</field>
+                    </block>
+                </value>
+                <value name="height">
+                    <block type="math_number">
+                        <field name="NUM">1</field>
+                    </block>
+                </value>
+                <value name="depth">
+                    <block type="math_number">
+                        <field name="NUM">1</field>
+                    </block>
+                </value>
+            </block>
+            <block type="cylinder0">
+                <value name="type">
+                    <block type="text">
+                        <field name="TEXT">1</field>
+                    </block>
+                </value>
+                
+                <value name="radius">
+                    <block type="math_number">
+                        <field name="NUM">10</field>
+                    </block>
+                </value>
+                <value name="height">
+                    <block type="math_number">
+                        <field name="NUM">3</field>
+                    </block>
+                </value>
+            </block>
+            <block type="cylinder0">
+                <value name="type">
+                    <block type="text">
+                        <field name="TEXT">1</field>
+                    </block>
+                </value>
+                
+                <value name="radius">
+                    <block type="math_number">
+                        <field name="NUM">10</field>
+                    </block>
+                </value>
+                <value name="height">
+                    <block type="math_number">
+                        <field name="NUM">3</field>
+                    </block>
+                </value>
+            </block>
+
+            <block type="sphere">
+                <value name="type">
+                    <block type="text">
+                        <field name="TEXT">1</field>
+                    </block>
+                </value>
+                
+                <value name="radius">
+                    <block type="math_number">
+                        <field name="NUM">10</field>
+                    </block>
+                </value>
+            </block>
+            <block type="hemisphere">
+                <value name="type">
+                    <block type="text">
+                        <field name="TEXT">1</field>
+                    </block>
+                </value>
+                
+                <value name="radius">
+                    <block type="math_number">
+                        <field name="NUM">10</field>
+                    </block>
+                </value>
+            </block>
+            <block type="up">
+                <value name="blocks">
+                    <block type="math_number">
+                        <field name="NUM">1</field>
+                    </block>
+                </value>
+            </block>
+            <block type="fwd">
+                <value name="blocks">
+                    <block type="math_number">
+                        <field name="NUM">1</field>
+                    </block>
+                </value>
+            </block>
+
+            <block type="turn">
+                <value name="blocks">
+                    <block type="math_number">
+                        <field name="NUM">1</field>
+                    </block>
+                </value>
+            </block>
+
+            <block type="left">
+                <value name="blocks">
+                    <block type="math_number">
+                        <field name="NUM">1</field>
+                    </block>
+                </value>
+            </block>
+
+            <block type="right">
+                <value name="blocks">
+                    <block type="math_number">
+                        <field name="NUM">1</field>
+                    </block>
+                </value>
+            </block>
+
+            <block type="chkpt">
+                <value name="title">
+                    <block type="text">
+                        <field name="TEXT">someWhere</field>
+                    </block>
+                </value>
+            </block>
+            <block type="move">
+                <value name="title">
+                    <block type="text">
+                        <field name="TEXT">someWhere</field>
+                    </block>
+                </value>
+                
+            </block>
+        </category>
+        <category name="Logic">
+            <category name="If">
+                <block type="controls_if"></block>
+                <block type="controls_if">
+                    <mutation else="1"></mutation>
+                </block>
+                <block type="controls_if">
+                    <mutation elseif="1" else="1"></mutation>
+                </block>
+            </category>
+            <category name="Boolean">
+                <block type="logic_compare"></block>
+                <block type="logic_operation"></block>
+                <block type="logic_negate"></block>
+                <block type="logic_boolean"></block>
+                <block type="logic_null"></block>
+                <block type="logic_ternary"></block>
+            </category>
+        </category>
+        <category name="Loops">
+            <block type="controls_repeat_ext">
+                <value name="TIMES">
+                    <block type="math_number">
+                        <field name="NUM">10</field>
+                    </block>
+                </value>
+            </block>
+            <block type="controls_whileUntil"></block>
+            <block type="controls_for">
+                <field name="VAR">i</field>
+                <value name="FROM">
+                    <block type="math_number">
+                        <field name="NUM">1</field>
+                    </block>
+                </value>
+                <value name="TO">
+                    <block type="math_number">
+                        <field name="NUM">10</field>
+                    </block>
+                </value>
+                <value name="BY">
+                    <block type="math_number">
+                        <field name="NUM">1</field>
+                    </block>
+                </value>
+            </block>
+            <block type="controls_flow_statements"></block>
+        </category>
+        <category name="Math">
+            <block type="math_number"></block>
+            <block type="math_arithmetic"></block>
+            <block type="math_single"></block>
+            <block type="math_trig"></block>
+            <block type="math_constant"></block>
+            <block type="math_number_property"></block>
+            <block type="math_change">
+                <value name="DELTA">
+                    <block type="math_number">
+                        <field name="NUM">1</field>
+                    </block>
+                </value>
+            </block>
+            <block type="math_round"></block>
+            <block type="math_modulo"></block>
+            <block type="math_random_int">
+                <value name="FROM">
+                    <block type="math_number">
+                        <field name="NUM">1</field>
+                    </block>
+                </value>
+                <value name="TO">
+                    <block type="math_number">
+                        <field name="NUM">100</field>
+                    </block>
+                </value>
+            </block>
+            <block type="math_random_float"></block>
+        </category>
+        <category name="Variables" custom="VARIABLE"></category>
+        <category name="Functions" custom="PROCEDURE"></category>
+    </xml>
+
+    <xml id="startBlocks" style="display: none">{{blocklyXml}}</xml>
+
+    <script>
+        Blockly.inject(document.getElementById('blocklyDiv'), { toolbox: document.getElementById('toolbox') });
+
+        var xmlContent = document.getElementById("txtBlocklyXML").value;
+        if(xmlContent !== ""){
+            var dom = Blockly.Xml.textToDom(xmlContent);
+            var workspace = Blockly.mainWorkspace;
+            Blockly.Xml.domToWorkspace(workspace, dom);
+        }
+
+    </script>
+
+</body>
+
+</html>

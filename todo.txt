@@ -1,0 +1,5 @@
+- implement list scripts
+x- add script
+x- update script
+x- delete script
+- read script
