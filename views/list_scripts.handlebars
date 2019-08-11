@@ -1,26 +1,33 @@
-<h1>Blockly Scripts</h1>
-
 <script>
-    function handleNewScript(){
+    function handleNewScript() {
         window.location = "/new";
     }
 </script>
-<input type="button" value="New script" onclick="handleNewScript()">
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col">Script Name</th>
-        </tr>
-    </thead>
-    <tbody>
-        {{#each files}}
-        <tr>
-            <td>
-                <a href="/edit/{{this}}">
-                    {{this}}
-                </a>
-            </td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
+
+
+<div class="card mb-4 shadow-sm">
+    <div class="card-header">
+        <h4 class="my-0 font-weight-normal">ScriptCraft Blockly Scripts</h4>
+    </div>
+    <div class="card-body">
+        <input type="button" value="New script" onclick="handleNewScript()" class="btn btn-outline-primary">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Script Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each files}}
+                <tr>
+                    <td>
+                        <a href="/edit/{{this}}">
+                            {{this}}
+                        </a>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
