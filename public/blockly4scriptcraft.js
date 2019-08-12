@@ -1,3 +1,8 @@
+
+function openBrickData(){
+  window.open("https://minecraft-ids.grahamedgecombe.com/", "_bricks");
+}
+
 function myAlert(strMessage) {
   var divAlertText = document.getElementById("divAlertText");
   divAlertText.innerText = strMessage;
@@ -22,11 +27,15 @@ function createJsFromBlockly(strModName) {
 
   Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
   var name = strModName;
-  var code = "";
-  code += "exports." + name + " = function(player){ \n ";
-  code += "var drone = new Drone(player); \n ";
-  code += Blockly.JavaScript.workspaceToCode();
-  code += "\n\n }; \n ";
+  var workspaceCode = Blockly.JavaScript.workspaceToCode();
+
+  var code = `Drone.extend('${name}', function() { 
+    this.chkpt('${name}');
+    var drone = this;
+    ${workspaceCode}
+    return this.move('${name}');      
+});`;
+
   document.getElementById("txtCode").value = code;
 
   return code;
