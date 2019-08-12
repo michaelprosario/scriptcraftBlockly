@@ -73,7 +73,7 @@ function saveCode() {
 
   $.post("/save_js", aMod)
     .done(function () {
-      alert("Script saved. \n\n Run the following: \n\n /js refresh()\n\n /js " + aMod.name + "(self)");
+      alert("Script saved. \n\n Run the following: \n\n /js refresh()\n\n /js " + aMod.name + "()");
     })
     .fail(function () {
       alert("error saving code");
